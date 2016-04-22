@@ -1,0 +1,18 @@
+CREATE PROCEDURE averager
+AS
+BEGIN 
+SELECT m.title, avg(ml.rating) AS avr 
+from movielens AS ml, movies AS m
+JOIN ON ml.movieid = m.movieid
+GROUP BY  moviedid
+SORT BY avr
+END
+GO
+
+CREATE TABLE AverageRatings(
+title STRING
+rating FLOAT)
+
+INSERT INTO AverageRatings
+(title,rating)
+EXEC dbo.averager
