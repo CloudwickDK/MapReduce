@@ -46,16 +46,14 @@ $ jar cf wc.jar WordCount*.class  (in our case: $ yarn jar wc.jar WordCount /wc_
 
 Create external tabble using hive:
 
-create external table movies(
-userid INT,
-
-movieID INT,
-rating INT,
-unixtime STRING,
-row format delimited
-fields terminated by ':',
-LOCATION '/datasets/'
-)
+CREATE EXTERNAL TABLE movies(
+movieid INT,
+title STRING,
+genre STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION '/datasets/metadata'
+tblproperties ("skip.header.line.count"="1","escape.delim"="\\");
 
 7.
 
