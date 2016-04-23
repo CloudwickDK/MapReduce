@@ -17,32 +17,32 @@ If you want to generate data:
 yarn jar /usr/hdp/2.4.0.0-169/hadoop-mapreduce/hadoop-mapreduce-examples.jar teragen 1000000 /teragenOut
 else:
 
-2.
+3.
 
 Download and/or copy your file to input folder
 $ hdfs dfs -moveFromLocal pg11.txt /wc_input
 $ hdfs dfs -ls /
 
-3.
+4.
 
 Create java project
 
-4.
+5.
 
-set environment variables are set as follows:
+set environment variables as follows:
 
 export JAVA_HOME=/usr/java/default
 export PATH=${JAVA_HOME}/bin:${PATH}
 export HADOOP_CLASSPATH=${JAVA_HOME}/lib/tools.jar
 
-5.
+6.
 
 Compile WordCount.java and create a jar:
 
 $ hadoop com.sun.tools.javac.Main WordCount.java
 $ jar cf wc.jar WordCount*.class  (in our case: $ yarn jar wc.jar WordCount /wc_input /wc_output)
 
-6.
+7.
 
 Create external tabble using hive:
 
@@ -55,11 +55,11 @@ FIELDS TERMINATED BY ','
 LOCATION '/datasets/metadata'
 tblproperties ("skip.header.line.count"="1","escape.delim"="\\");
 
-7.
+8.
 
 Execute this command in hive to order your output records
 
-hive -e 'select * from warcount order by count;' > warcount.tsv
+hive -e 'select * from movies order by count;' > warcount.tsv
 
 
 
